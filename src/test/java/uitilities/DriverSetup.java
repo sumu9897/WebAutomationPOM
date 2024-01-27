@@ -10,10 +10,11 @@ import org.testng.annotations.BeforeTest;
 public class DriverSetup {
 
     public WebDriver browser;
+    public static String browserName = System.getProperty("browser", "Chrome");
 
     @BeforeTest
     public void openABrowser(){
-        browser = new ChromeDriver();
+        browser = getBrowser(browserName);
         browser.manage().window().maximize();
     }
 
