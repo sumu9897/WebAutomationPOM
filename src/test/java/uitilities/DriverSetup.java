@@ -7,6 +7,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import java.time.Duration;
+
 public class DriverSetup {
 
 //    public WebDriver browser;
@@ -14,23 +16,12 @@ public class DriverSetup {
 
     private static final ThreadLocal<WebDriver> LOCAL_BROWSER =new ThreadLocal<>();
 
-    public static WebDriver getBrowser() {
-        return LOCAL_BROWSER.get();
-    }
-
     public static void setBrowser(WebDriver browser) {
         DriverSetup.LOCAL_BROWSER.set(browser);
     }
 
-    @BeforeTest
-    public void openABrowser(){
-        browser = getBrowser(browserName);
-        browser.manage().window().maximize();
-    }
-
-    @AfterTest
-    public void quiteBrowser(){
-        browser.quit();
+    public static WebDriver getBrowser() {
+        return LOCAL_BROWSER.get();
     }
 
     public WebDriver getBrowser(String browserName) {
@@ -44,5 +35,19 @@ public class DriverSetup {
             throw new RuntimeException("Browser is not available with the given name: " + browserName);
         }
 
+    }
+
+    @BeforeTest
+    public void openABrowser(){
+        WebDriver browser = getBrowser(browserName);
+        browser.manage().window().maximize();
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        setBrowser(browser);
+
+    }
+
+    @AfterTest
+    public void quiteBrowser(){
+        getBrowser().quit();
     }
 }
