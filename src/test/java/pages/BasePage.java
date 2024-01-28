@@ -9,7 +9,7 @@ public class BasePage {
 
     public WebElement getElement(By locator){
 
-        getBrowser().findElement(locator);
+        return getBrowser().findElement(locator);
 
     }
 
