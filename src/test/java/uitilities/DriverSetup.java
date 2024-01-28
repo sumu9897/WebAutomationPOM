@@ -9,8 +9,18 @@ import org.testng.annotations.BeforeTest;
 
 public class DriverSetup {
 
-    public WebDriver browser;
+//    public WebDriver browser;
     public static String browserName = System.getProperty("browser", "Chrome");
+
+    private static final ThreadLocal<WebDriver> LOCAL_BROWSER =new ThreadLocal<>();
+
+    public static WebDriver getBrowser() {
+        return LOCAL_BROWSER.get();
+    }
+
+    public static void setBrowser(WebDriver browser) {
+        DriverSetup.LOCAL_BROWSER.set(browser);
+    }
 
     @BeforeTest
     public void openABrowser(){
