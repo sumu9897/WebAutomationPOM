@@ -34,4 +34,8 @@ public class BasePage {
     public void loadAWebPage(String url){
         getBrowser().get(url);
     }
+
+    public String getElementText(By locator){
+        return getElement(locator).getText();
+    }
 }

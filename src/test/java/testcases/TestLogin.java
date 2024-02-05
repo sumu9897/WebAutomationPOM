@@ -25,4 +25,19 @@ public class TestLogin extends DriverSetup {
         Assert.assertEquals(getBrowser().getCurrentUrl(),productPage.productPageURL);
 
     }
+
+    @Test
+    public void testLoginWithInvalidPassword(){
+
+        getBrowser().get(loginPage.loginPageUrl);
+
+        loginPage.writeOnAElement(loginPage.emailInputBox, "standard_user");
+        loginPage.writeOnAElement(loginPage.passwordInputBox, "secret_");
+        loginPage.clickOnElement(loginPage.loginButton);
+        Assert.assertTrue(loginPage.getElement(loginPage.errorMsg).isDisplayed());
+        Assert.assertEquals(loginPage.getElementText(loginPage.errorMsg),"Epic sadface: Username and password do not match any user in this service");
+
+    }
+
+
 }
