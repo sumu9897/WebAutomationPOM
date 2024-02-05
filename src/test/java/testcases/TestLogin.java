@@ -24,8 +24,5 @@ public class TestLogin extends DriverSetup {
         loginPage.clickOnElement(loginPage.loginButton);
         Assert.assertEquals(getBrowser().getCurrentUrl(),productPage.productPageURL);
 
-
-
-
     }
 }
