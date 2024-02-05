@@ -14,6 +14,14 @@ public class LoginPage extends BasePage{
 
     public By loginButton =By.xpath("//input[@id='login-button']");
 
+    public void doLogin(String email, String password){
+        loadAWebPage(loginPageUrl);
+        writeOnAElement(emailInputBox,email);
+        writeOnAElement(passwordInputBox,password);
+        clickOnElement(loginButton);
+
+    }
+
 
 
 

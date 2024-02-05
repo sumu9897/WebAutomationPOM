@@ -30,4 +30,8 @@ public class BasePage {
         actions.clickAndHold(getElement(locator)).build().perform();
 
     }
+
+    public void loadAWebPage(String url){
+        getBrowser().get(url);
+    }
 }
