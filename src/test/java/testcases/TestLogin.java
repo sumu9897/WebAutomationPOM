@@ -14,7 +14,14 @@ public class TestLogin extends DriverSetup {
     public void testLogin(){
 
         getBrowser().get(homePage.homepageURL);
-        homePage.clickOnElement(homePage.signInButton);
+        homePage.hoverOnElement(homePage.signInButton);
+        homePage.clickOnElement(homePage.LoginOption);
+        signInPage.writeOnAElement(signInPage.emailInputBox, signInPage.email);
+        signInPage.writeOnAElement(signInPage.passwordField, signInPage.password);
+        signInPage.clickOnElement(signInPage.rememberMe);
+        signInPage.clickOnElement(signInPage.loginButton);
+
+
 
 
     }
