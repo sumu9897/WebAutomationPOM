@@ -15,7 +15,7 @@ public class TestLogin extends DriverSetup {
     LoginPage loginPage = new LoginPage();
     ProductPage productPage = new ProductPage();
     @Test
-    public void testLogin(){
+    public void testLoginWithValidCredentials(){
 
         getBrowser().get(loginPage.loginPageUrl);
 
